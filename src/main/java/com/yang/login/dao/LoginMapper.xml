@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.yang.login.dao.LoginMapper">
+    <select id="select_AdminByaccount" resultType="com.yang.admin.bean.Admin">
+        select * from admin_info where admin_account= #{admin_account}
+    </select>
+
+   <select id="select_AdminLogin" resultType="com.yang.admin.bean.Admin">
+       select * from admin_info
+       <trim prefix="where" prefixOverrides="and | or">
+           <if test="admin_account !=null and admin_account != '' ">
+               and admin_account =#{admin_account}
+           </if>
+           <if test="admin_pswd !=null and admin_pswd != '' ">
+               and admin_pswd =#{admin_pswd}
+           </if>
+           and 1=1
+
+       </trim>
+   </select>
+</mapper>
